@@ -1,5 +1,5 @@
-CREATE OR REPLACE TABLE`analog-hour-508316-p9.kimiafarma_data.tabel_analisa`AS
-SELECT  
+CREATE OR REPLACE TABLE `rakamin-kf-analytics-140926.Kimia_Farma.Tabel_analisa` AS
+SELECT
   t.transaction_id,
   t.date,
   t.branch_id,
@@ -33,9 +33,10 @@ SELECT
   END) AS nett_profit,
   
   t.rating AS rating_transaksi
-  
-FROM `analog-hour-508316-p9.kimiafarma_data.kf_final_transaction` AS t
-LEFT JOIN `analog-hour-508316-p9.kimiafarma_data.kf_kantor_cabang` AS b 
+
+  FROM `rakamin-kf-analytics-140926.Kimia_Farma.kf_final_transaction` AS t
+LEFT JOIN `rakamin-kf-analytics-140926.Kimia_Farma.kf_kantor_cabang` AS b 
   ON t.branch_id = b.branch_id
-LEFT JOIN `analog-hour-508316-p9.kimiafarma_data.kf_product`AS p
+LEFT JOIN `rakamin-kf-analytics-140926.Kimia_Farma.kf_product`AS p
   ON t.product_id = p.product_id
+  
