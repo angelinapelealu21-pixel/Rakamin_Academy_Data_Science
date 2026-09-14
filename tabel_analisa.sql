@@ -12,7 +12,7 @@ SELECT
   p.product_name,
   t.price AS actual_price,
   t.discount_percentage,
-
+### Menghitung persentase gross laba ### 
   CASE 
     WHEN t.price <= 50000 THEN 0.10
     WHEN t.price <=100000 THEN 0.15
@@ -20,9 +20,11 @@ SELECT
     WHEN t.price <=500000 THEN 0.25
     WHEN t.price > 500000 THEN 0.30
   END AS persentase_gross_laba,
-  
+
+  ### Menghitung nett sales ### 
   t.price * (1-(t.discount_percentage/100)) AS nett_sales,
 
+  ### Menghitung nett profit= nett_sales * persentase_gross_laba ### 
   (t.price * (1-(t.discount_percentage/100))) *
   (CASE
     WHEN t.price <= 50000 THEN 0.10
@@ -33,7 +35,8 @@ SELECT
   END) AS nett_profit,
   
   t.rating AS rating_transaksi
-
+  
+### Menyatukan data kedalam satu tabel analisa ###
   FROM `rakamin-kf-analytics-140926.Kimia_Farma.kf_final_transaction` AS t
 LEFT JOIN `rakamin-kf-analytics-140926.Kimia_Farma.kf_kantor_cabang` AS b 
   ON t.branch_id = b.branch_id
